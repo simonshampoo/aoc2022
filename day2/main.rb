@@ -10,16 +10,17 @@ module Outcomes
   WIN = 6
 end
 
+hands = Hash["A" => Hands::ROCK,
+             "B" => Hands::PAPER,
+             "C" => Hands::SCISSORS,
+             "X" => Hands::ROCK,
+             "Y" => Hands::PAPER,
+             "Z" => Hands::SCISSORS
+]
+
 def solve()
   ans = 0
 
-  hands = Hash["A" => Hands::ROCK,
-               "B" => Hands::PAPER,
-               "C" => Hands::SCISSORS,
-               "X" => Hands::ROCK,
-               "Y" => Hands::PAPER,
-               "Z" => Hands::SCISSORS
-  ]
   outcomes = Hash["X" => Outcomes::LOSS, "Y" => Outcomes::DRAW, "Z" => Outcomes::WIN]
   File.readlines("./input.txt").each do |line|
     match = line.split(" ")
@@ -50,6 +51,14 @@ def solve()
     ans += hands[me]
   end
   puts "my score #{ans}"
+end
+
+def solve2()
+  File.readlines("./input.txt").each do |line|
+    game = line.split(" ")
+    opponent = game[0]
+    me = game[1]
+  end
 end
 
 solve()
