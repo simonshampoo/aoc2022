@@ -18,10 +18,11 @@ $hands = Hash["A" => Hands::ROCK,
               "Z" => Hands::SCISSORS
 ]
 
+$outcomes = Hash["X" => Outcomes::LOSS, "Y" => Outcomes::DRAW, "Z" => Outcomes::WIN]
+
 class Solution
   def solve
     ans = 0
-    outcomes = Hash["X" => Outcomes::LOSS, "Y" => Outcomes::DRAW, "Z" => Outcomes::WIN]
     File.readlines("./input.txt").each do |line|
       match = line.split(" ")
       opponent = match[0]
@@ -57,9 +58,10 @@ class Solution
     File.readlines("./input.txt").each do |line|
       game = line.split(" ")
       opponent = game[0]
-      me = game[1]
+      result = game[1]
     end
   end
 end
 
 Solution.new.solve
+Solution.new.solve2
