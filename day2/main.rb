@@ -10,55 +10,56 @@ module Outcomes
   WIN = 6
 end
 
-hands = Hash["A" => Hands::ROCK,
-             "B" => Hands::PAPER,
-             "C" => Hands::SCISSORS,
-             "X" => Hands::ROCK,
-             "Y" => Hands::PAPER,
-             "Z" => Hands::SCISSORS
+$hands = Hash["A" => Hands::ROCK,
+              "B" => Hands::PAPER,
+              "C" => Hands::SCISSORS,
+              "X" => Hands::ROCK,
+              "Y" => Hands::PAPER,
+              "Z" => Hands::SCISSORS
 ]
 
-def solve()
-  ans = 0
+class Solution
+  def solve
+    ans = 0
+    outcomes = Hash["X" => Outcomes::LOSS, "Y" => Outcomes::DRAW, "Z" => Outcomes::WIN]
+    File.readlines("./input.txt").each do |line|
+      match = line.split(" ")
+      opponent = match[0]
+      me = match[1]
 
-  outcomes = Hash["X" => Outcomes::LOSS, "Y" => Outcomes::DRAW, "Z" => Outcomes::WIN]
-  File.readlines("./input.txt").each do |line|
-    match = line.split(" ")
-    opponent = match[0]
-    me = match[1]
-
-    if hands[opponent] == Hands::ROCK
-      if hands[me] == Hands::PAPER
-        ans += Outcomes::WIN
-      elsif hands[me] == Hands::ROCK
-        ans += Outcomes::DRAW
+      if hands[opponent] == Hands::ROCK
+        if hands[me] == Hands::PAPER
+          ans += Outcomes::WIN
+        elsif hands[me] == Hands::ROCK
+          ans += Outcomes::DRAW
+        end
       end
-    end
-    if hands[opponent] == Hands::SCISSORS
-      if hands[me] == Hands::ROCK
-        ans += Outcomes::WIN
-      elsif hands[me] == Hands::SCISSORS
-        ans += Outcomes::DRAW
+      if hands[opponent] == Hands::SCISSORS
+        if hands[me] == Hands::ROCK
+          ans += Outcomes::WIN
+        elsif hands[me] == Hands::SCISSORS
+          ans += Outcomes::DRAW
+        end
       end
-    end
-    if hands[opponent] == Hands::PAPER
-      if hands[me] == Hands::SCISSORS
-        ans += Outcomes::WIN
-      elsif hands[me] == Hands::PAPER
-        ans += Outcomes::DRAW
+      if hands[opponent] == Hands::PAPER
+        if hands[me] == Hands::SCISSORS
+          ans += Outcomes::WIN
+        elsif hands[me] == Hands::PAPER
+          ans += Outcomes::DRAW
+        end
       end
+      ans += hands[me]
     end
-    ans += hands[me]
+    puts "my score #{ans}"
   end
-  puts "my score #{ans}"
+
+  def solve2()
+    File.readlines("./input.txt").each do |line|
+      game = line.split(" ")
+      opponent = game[0]
+      me = game[1]
+    end
+  end
 end
 
-def solve2()
-  File.readlines("./input.txt").each do |line|
-    game = line.split(" ")
-    opponent = game[0]
-    me = game[1]
-  end
-end
-
-solve()
+Solution.new.solve
