@@ -10,15 +10,14 @@ module Outcomes
   WIN = 6
 end
 
-$hands = Hash["A" => Hands::ROCK,
-              "B" => Hands::PAPER,
-              "C" => Hands::SCISSORS,
-              "X" => Hands::ROCK,
-              "Y" => Hands::PAPER,
-              "Z" => Hands::SCISSORS
-]
+$hand = { "A" => Hands::ROCK,
+          "B" => Hands::PAPER,
+          "C" => Hands::SCISSORS,
+          "X" => Hands::ROCK,
+          "Y" => Hands::PAPER,
+          "Z" => Hands::SCISSORS }
 
-$outcomes = Hash["X" => Outcomes::LOSS, "Y" => Outcomes::DRAW, "Z" => Outcomes::WIN]
+$outcomes = { "X" => Outcomes::LOSS, "Y" => Outcomes::DRAW, "Z" => Outcomes::WIN }
 
 class Solution
   def solve
@@ -28,28 +27,28 @@ class Solution
       opponent = match[0]
       me = match[1]
 
-      if hands[opponent] == Hands::ROCK
-        if hands[me] == Hands::PAPER
+      if $hand[opponent] == Hands::ROCK
+        if $hand[me] == Hands::PAPER
           ans += Outcomes::WIN
-        elsif hands[me] == Hands::ROCK
+        elsif $hand[me] == Hands::ROCK
           ans += Outcomes::DRAW
         end
       end
-      if hands[opponent] == Hands::SCISSORS
-        if hands[me] == Hands::ROCK
+      if $hand[opponent] == Hands::SCISSORS
+        if $hand[me] == Hands::ROCK
           ans += Outcomes::WIN
-        elsif hands[me] == Hands::SCISSORS
+        elsif $hand[me] == Hands::SCISSORS
           ans += Outcomes::DRAW
         end
       end
-      if hands[opponent] == Hands::PAPER
-        if hands[me] == Hands::SCISSORS
+      if $hand[opponent] == Hands::PAPER
+        if $hand[me] == Hands::SCISSORS
           ans += Outcomes::WIN
-        elsif hands[me] == Hands::PAPER
+        elsif $hand[me] == Hands::PAPER
           ans += Outcomes::DRAW
         end
       end
-      ans += hands[me]
+      ans += $hand[me]
     end
     puts "my score #{ans}"
   end
