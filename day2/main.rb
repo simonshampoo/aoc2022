@@ -58,6 +58,25 @@ class Solution
       game = line.split(" ")
       opponent = game[0]
       result = game[1]
+
+      if $hand[opponent] == Hands::ROCK
+        if $outcomes[result] == Outcomes::WIN
+        elsif $outcomes[result] == Outcomes::DRAW
+        else
+        end
+      end
+      if $hand[opponent] = Hands::SCISSORS
+        if $outcomes[result] == Outcomes::WIN
+        elsif $outcomes[result] == Outcomes::DRAW
+        else
+        end
+      end
+      if $hand[opponent] = Hands::PAPER
+        if $outcomes[result] == Outcomes::WIN
+        elsif $outcomes[result] == Outcomes::DRAW
+        else
+        end
+      end
     end
   end
 end
