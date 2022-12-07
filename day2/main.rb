@@ -54,6 +54,7 @@ class Solution
   end
 
   def solve2()
+    ans = 0
     File.readlines("./input.txt").each do |line|
       game = line.split(" ")
       opponent = game[0]
