@@ -12,10 +12,7 @@ end
 
 $hand = { "A" => Hands::ROCK,
           "B" => Hands::PAPER,
-          "C" => Hands::SCISSORS,
-          "X" => Hands::ROCK,
-          "Y" => Hands::PAPER,
-          "Z" => Hands::SCISSORS }
+          "C" => Hands::SCISSORS }
 
 $outcomes = { "X" => Outcomes::LOSS, "Y" => Outcomes::DRAW, "Z" => Outcomes::WIN }
 
@@ -62,25 +59,35 @@ class Solution
 
       if $hand[opponent] == Hands::ROCK
         if $outcomes[result] == Outcomes::WIN
+          ans += Outcomes::WIN + Hands::PAPER
         elsif $outcomes[result] == Outcomes::DRAW
+          ans += Outcomes::DRAW + Hands::ROCK
         else
+          ans += Outcomes::LOSS + Hands::SCISSORS
         end
       end
-      if $hand[opponent] = Hands::SCISSORS
+      if $hand[opponent] == Hands::SCISSORS
         if $outcomes[result] == Outcomes::WIN
+          ans += Outcomes::WIN + Hands::ROCK
         elsif $outcomes[result] == Outcomes::DRAW
+          ans += Outcomes::DRAW + Hands::SCISSORS
         else
+          ans += Outcomes::LOSS + Hands::PAPER
         end
       end
-      if $hand[opponent] = Hands::PAPER
+      if $hand[opponent] == Hands::PAPER
         if $outcomes[result] == Outcomes::WIN
+          ans += Outcomes::WIN + Hands::SCISSORS
         elsif $outcomes[result] == Outcomes::DRAW
+          ans += Outcomes::DRAW + Hands::PAPER
         else
+          ans += Outcomes::LOSS + Hands::ROCK
         end
       end
     end
+    ans
   end
 end
 
-Solution.new.solve
-Solution.new.solve2
+#Solution.new.solve
+puts Solution.new.solve2
